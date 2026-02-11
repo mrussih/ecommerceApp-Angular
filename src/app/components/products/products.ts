@@ -18,12 +18,12 @@ export class Products {
   totalOrderPrice:number = 0;
   constructor(){
     this.products = [
-      {id:100, name:'Dell laptop', price:50000, quantity:3, imgURL:'https://imagefaker.access.mx.com/440x320/282828/eae0d0/?retina=1', catId:1},
-      {id:200, name:'HP laptop', price:40000, quantity:0, imgURL:'https://imagefaker.access.mx.com/440x320/282828/eae0d0/?retina=1', catId:1},
-      {id:300, name:'Iphone', price:30000, quantity:2, imgURL:'https://imagefaker.access.mx.com/440x320/282828/eae0d0/?retina=1', catId:2},
-      {id:400, name:'Oppo', price:60000, quantity:1, imgURL:'https://imagefaker.access.mx.com/440x320/282828/eae0d0/?retina=1', catId:2},
-      {id:500, name:'Samsung tablet', price:20000, quantity:0, imgURL:'https://imagefaker.access.mx.com/440x320/282828/eae0d0/?retina=1', catId:3},
-      {id:600, name:'Lenovo tablet', price:10000, quantity:4, imgURL:'https://imagefaker.access.mx.com/440x320/282828/eae0d0/?retina=1', catId:3},
+      {id:100, name:'Dell laptop',des:'very Fast Dell laptop', price:50000, quantity:3, imgURL:'https://imagefaker.access.mx.com/440x320/282828/eae0d0/?retina=1', catId:1},
+      {id:200, name:'HP laptop',des:'very Fast HP laptop', price:40000, quantity:0, imgURL:'https://imagefaker.access.mx.com/440x320/282828/eae0d0/?retina=1', catId:1},
+      {id:300, name:'Iphone',des:'very Fast Iphone', price:30000, quantity:2, imgURL:'https://imagefaker.access.mx.com/440x320/282828/eae0d0/?retina=1', catId:2},
+      {id:400, name:'Oppo',des:'very Fast Oppo', price:60000, quantity:1, imgURL:'https://imagefaker.access.mx.com/440x320/282828/eae0d0/?retina=1', catId:2},
+      {id:500, name:'Samsung tablet',des:'very Fast Samsung tablet', price:20000, quantity:0, imgURL:'https://imagefaker.access.mx.com/440x320/282828/eae0d0/?retina=1', catId:3},
+      {id:600, name:'Lenovo tablet',des:'very Fast Lenovo tablet', price:10000, quantity:4, imgURL:'https://imagefaker.access.mx.com/440x320/282828/eae0d0/?retina=1', catId:3},
     ]
     this.categories=[
       {id:1, name:'Laptop'},
@@ -40,4 +40,8 @@ export class Products {
   change(){
     this.selectedCatId = 2  
   } // Two Way Binding (View <=> controller)
+
+  trackItem(index:number , item:Iproduct){
+    return item.id
+  }
 } 

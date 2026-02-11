@@ -12,14 +12,16 @@
 
 <div class="row row-cols-1 row-cols-md-4 g-4">
 
-<div class="card-group col" *ngFor="let prd of products">
+<div class="card-group col" *ngFor="let prd of products; let i = index; let c=count; trackBy:trackItem" [class.d-none] = "prd.catId!=selectedCatId">
   <div class="card">
                             <!-- img property bindeing -->
     <img class="card-img-top" [src]="prd.imgURL" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">{{prd.name}}</h5>
+    <div class="card-body" [style.color]="(prd.quantity===0) ? 'red':'black'">
+      <h5 class="card-title">{{i + 1}} {{prd.name}}</h5>
       <p class="card-text">Price : {{prd.price}}</p>
+      <p class="card-text">Description : {{prd.des}}</p>
       <p class="card-text">Quantity : {{prd.quantity}}</p>
+      <p class="card-text">{{c}}</p>
       <!-- template variable , refrence (#countInput عشان تجيب قيمة ال input--> 
       <input type="number" #countInput/>
       <button class="btn btn-primary" (click)="buy(countInput.value, prd.price)">Buy</button>
@@ -29,4 +31,6 @@
  
 </div>
 </div>
+
+
 
