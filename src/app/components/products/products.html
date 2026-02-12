@@ -11,25 +11,34 @@
 <button (click)="change()">Change Category</button>
 
 <div class="row row-cols-1 row-cols-md-4 g-4">
-
-<div class="card-group col" *ngFor="let prd of products; let i = index; let c=count; trackBy:trackItem" [class.d-none] = "prd.catId!=selectedCatId">
-  <div class="card">
-                            <!-- img property bindeing -->
-    <img class="card-img-top" [src]="prd.imgURL" alt="Card image cap">
-    <div class="card-body" [style.color]="(prd.quantity===0) ? 'red':'black'">
-      <h5 class="card-title">{{i + 1}} {{prd.name}}</h5>
-      <p class="card-text">Price : {{prd.price}}</p>
-      <p class="card-text">Description : {{prd.des}}</p>
-      <p class="card-text">Quantity : {{prd.quantity}}</p>
-      <p class="card-text">{{c}}</p>
-      <!-- template variable , refrence (#countInput عشان تجيب قيمة ال input--> 
-      <input type="number" #countInput/>
-      <button class="btn btn-primary" (click)="buy(countInput.value, prd.price)">Buy</button>
+<ng-container *ngFor="let prd of products; let i = index; let c=count; trackBy:trackItem" >
+  <!-- <div class="card-group col" [class.d-none] = "prd.catId!=selectedCatId" *ngIf="prd.quantity!=0"> -->
+  <div class="card-group col" *ngIf="prd.quantity!=0" [ngStyle]="{border:(prd.quantity===1)? '1px solid red' : '1px solid green'}">
+    
+    <div class="card">
+                              <!-- img property bindeing -->
+      <img class="card-img-top" [src]="prd.imgURL" alt="Card image cap">
+      <div class="card-body" [ngClass]="(prd.quantity===1) ? 'text-danger' : ''" [style.color]="(prd.quantity===0) ? 'red':'blue'">
+        <h5 class="card-title">{{i + 1}}- {{prd.name}}</h5>
+        <p class="card-text">Price : {{prd.price}}</p>
+        <p class="card-text">Description : <span style="font-size: 15px;">{{prd.des}}</span></p>
+        <!-- <p class="card-text" *ngIf="prd.quantity!=1;else LastItem">Quantity : {{prd.quantity}}</p>
+        <ng-template #LastItem><p>Quantity : Last Item</p></ng-template> -->
+        <div [ngSwitch]="prd.quantity">
+          <p *ngSwitchCase="1">Quantity : Last Item</p>
+          <p *ngSwitchCase="2">Quantity : Last Two Item</p>
+          <p *ngSwitchDefault="">Quantity : {{prd.quantity}}</p>
+        </div>
+        <p class="card-text">{{c}}</p>
+        <!-- template variable , refrence (#countInput عشان تجيب قيمة ال input--> 
+        <input type="number" #countInput/>
+        <button class="btn btn-primary" (click)="buy(countInput.value, prd.price)">Buy</button>
+      </div>
     </div>
+  
+   
   </div>
-
- 
-</div>
+</ng-container>
 </div>
 
 
